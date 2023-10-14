@@ -11,7 +11,7 @@ class Robokassa
     /**
      * @var string
      */
-    private string $payment_url = 'https://auth.robokassa.ru/Merchant/Index.aspx';
+    private string $payment_url = 'https://auth.robokassa.ru/Merchant/Indexjson.aspx';
 
     /**
      * @var string
@@ -383,7 +383,7 @@ class Robokassa
 
         $url = $this->getWebServiceUrl('OpState', $query);
 
-        return $this->getRequest($url);
+        return array_merge($this->getRequest($url),array('Signature' => $this->signatureState($invoiceID)));
     }
 
     /**
@@ -565,7 +565,7 @@ class Robokassa
         $required = [
             $this->getLogin(),
             $params['OutSum'],
-            $params['InvoiceID'],
+            $params['InvoiceId'],
             $this->getPassword1(),
         ];
 
@@ -581,7 +581,7 @@ class Robokassa
     private function getRequest($url): array
     {
         $client = new Client();
-        $response = $client->get($url)->getBody();
+        $response = $client->get($url);
 
         if ($response->getStatusCode() === 200) {
             $xml = $response->getBody()->getContents();
