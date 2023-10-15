@@ -6,12 +6,12 @@
     "recurrent",
     "payment"
   ],
-  "homepage": "https://github.com/unetway/robokassa",
+  "homepage": "https://github.com/MakarRodenko/robokassa",
   "license": "MIT",
   "authors": [
     {
-      "name": "Cherepanov Ilya",
-      "email": "support@unetway.com"
+      "name": "Rodenko Makar",
+      "email": "makar@ecltd.ru"
     }
   ],
   "require": {
